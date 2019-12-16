@@ -30,13 +30,43 @@ h2 {
 /* BUTTONS */
 /***********/
 
-.btn-imgUpload {
-  background-color: rgb(172, 172, 172);
-  border: rgb(172, 172, 172) solid 1px;
+#btn-imgUpload {
+  margin-bottom: 45px;
+  margin-left: 180px;
+  background-color: rgb(223, 223, 223);
+  border: rgb(223, 223, 223) solid 1px;
+  color: grey;
+  text-decoration: none; 
 }
 
-.btn-save {
-  background-color: cornsilk;
+/* .btn-imgUpload:link,
+.btn-imgUpload:visited {
+  
+} */
+
+#btn-imgUpload:hover,
+#btn-imgUpload:active {
+  background-color: rgb(184, 184, 184);
+  border: rgb(184, 184, 184) solid 1px;
+  color: grey;
+}
+
+#btn-save {
+  background-color: rgb(231, 231, 231);
+  border: rgb(41, 41, 41) solid 1px;
+  color: rgb(41, 41, 41);
+  margin: 75px;
+  padding: 4px 70px;
+}
+
+#btn-add {
+  border-radius: 50px;
+  border: black solid 2px;
+  background-color: rgb(255, 255, 255);
+  font-size: 30px;
+  color: black;
+  float: right;
+  margin: 10px;
 }
 
 
@@ -44,3 +74,8 @@ h2 {
 /** NEW PRODUCT PAGE **/
 /**********************/
 
+.book-form {
+  border: black solid 1px;
+  margin: 40px;
+  padding: 50px 20px;
+}
