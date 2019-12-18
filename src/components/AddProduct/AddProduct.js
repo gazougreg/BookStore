@@ -19,7 +19,7 @@ const addProduct = (props) => {
                 storeInput={props.storeInput}
                 storeInState={props.storeInState}
             />
-            {flag?<Alert  variant="danger">ERROR</Alert>:null}
+            {flag?<Alert  variant="danger">{props.errors.map((err)=><p>{err}</p>)}</Alert>:null}
             
         </div>
     );
