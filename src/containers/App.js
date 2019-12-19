@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import data from '../assets/books.json';
 import AddProduct from '../components/AddProduct/AddProduct';
+import Search from '../components/Search/Search';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -197,6 +198,9 @@ class App extends Component {
           storeInput={this.changeHandler}
           storeInState={this.submitHandler}
           errors={this.state.errors}
+        />
+        <Search
+          books={this.state.data.books}
         />
       </div>
     );
