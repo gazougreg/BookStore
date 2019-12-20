@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom'
 import data from '../assets/books.json';
+import Home from '../components/Home/Home';
 import AddProduct from '../components/AddProduct/AddProduct';
 import Search from '../components/Search/Search';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -196,7 +198,23 @@ class App extends Component {
     return (
       <div>
         <h1>Bookstore</h1>
-        <AddProduct 
+
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route path="/book/add" render={()=> <AddProduct 
+          inputImage={this.inputImage}
+          imageButtonHandler={this.imageButtonHandler}
+          alertFlag={this.state.alertFlag}
+          flag={this.state.formFlag}
+          bookFormCounter={this.bookFormCounter}
+          storeInput={this.changeHandler}
+          storeInState={this.submitHandler}
+          errors={this.state.errors}
+        /> }/>
+          <Route path="/search" render={()=> <Search  books={this.state.data.books}/>}/>
+        </Switch>
+
+        {/* <AddProduct 
           inputImage={this.inputImage}
           imageButtonHandler={this.imageButtonHandler}
           // bookFormCount={this.state.bookFormCount}
@@ -209,7 +227,7 @@ class App extends Component {
         />
         <Search
           books={this.state.data.books}
-        />
+        /> */}
       </div>
     );
   }

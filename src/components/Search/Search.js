@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Row, Col} from 'react-bootstrap';
+import {Row, Col, Breadcrumb} from 'react-bootstrap';
 import SearchResult from './SearchResult/SearchResult';
 
 //Search Component returns the Search Page
@@ -34,12 +34,17 @@ const Search = (props) => {
             if (book[f].includes(searchTerm)){
                 tmpResult.push(book);
             }
+            return null;
         })
         setSearchResult(tmpResult); // stores the result of the search
     }
 
     return (
         <div>
+            <Breadcrumb>
+                <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+                <Breadcrumb.Item active>Search</Breadcrumb.Item>
+            </Breadcrumb>
             <form onSubmit={searchSubmitHandler}>
                 <input type="text" placeholder="Search..." className="search-bar" onChange={searchChangeHandler}/>
                 <input type="submit" style={{display:"none"}}/>
