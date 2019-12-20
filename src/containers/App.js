@@ -44,7 +44,7 @@ class App extends Component {
     let value = event.target.value;
     let temp = this.state.tempBook;
     // let tempVal = this.state.validations;
-    temp [name]= value ;
+    temp[name] = value ;
     // tempVal [name] = false;
 
     this.setState({tempBook : temp});
@@ -147,35 +147,43 @@ class App extends Component {
 
     // ISBN-10 validation:
     let tmpISBN10 = this.state.tempBook.isbn10;
-    if (tmpISBN10.length !== 10) {
-      errors.push("Inavlid entry. ISBN-10 should consist of 10 digits.");
-    }
-    for (let i=0; i< tmpISBN10.length; i++) {
-      let a = tmpISBN10.charAt(i);
-      if (!regNum.test(a)){
-        errors.push("Invalid ISBN-10. Only numbers are acceptable");
-        break;
+    if (tmpISBN10) {
+      if (tmpISBN10.length !== 10) {
+        errors.push("Inavlid entry. ISBN-10 should consist of 10 digits.");
+      }
+      for (let i=0; i< tmpISBN10.length; i++) {
+        let a = tmpISBN10.charAt(i);
+        if (!regNum.test(a)){
+          errors.push("Invalid ISBN-10. Only numbers are acceptable");
+          break;
+        }
       }
     }
 
     // ISBN-13 validation:
     let tmpISBN13 = this.state.tempBook.isbn;
-    if (tmpISBN13.length !== 13) {
-      errors.push("Inavlid entry. ISBN-13 should consist of 13 digits.");
-    }
-    for (let i=0; i< tmpISBN13.length; i++) {
-      let b = tmpISBN13.charAt(i);
-      if (!regNum.test(b)){
-        errors.push("Invalid ISBN-13. Only numbers are acceptable");
-        break;
+    if (tmpISBN13) {
+      if (tmpISBN13.length !== 13) {
+        errors.push("Inavlid entry. ISBN-13 should consist of 13 digits.");
+      }
+      for (let i=0; i< tmpISBN13.length; i++) {
+        let b = tmpISBN13.charAt(i);
+        if (!regNum.test(b)){
+          errors.push("Invalid ISBN-13. Only numbers are acceptable");
+          break;
+        }
       }
     }
+
+
     if (errors.length > 0) {
       this.setState({alertFlag:true, errors: errors});
     }
     else {
       console.log("I have found NO errors. Hooray!");
-      this.setState({data: books, alertFlag:false, errors: errors});
+      let data ={...this.state.data};
+      data.books = books;
+      this.setState({data: data, alertFlag:false, errors: errors});
     }
   }
 

@@ -1,61 +1,65 @@
 import React, {useState} from 'react';
 import {Row, Col} from 'react-bootstrap';
+import SearchResult from './SearchResult/SearchResult';
 
+//Search Component returns the Search Page
+
+//with hooks, the search and its result are kept 
 const Search = (props) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResult, setSearchResult] = useState([]);
     const [selectedFilter, setFilter] = useState(0);
 
+    //search filters. Adding a new value in the array results a new filter in the search
     const filters = ["Title", "Author", "Category", "Publisher", "Year"];
 
+    //called onChange in the search bar
     const searchChangeHandler = (event) => {
-        setSearchTerm(event.target.value);
+        setSearchTerm(event.target.value);//stores the string input in the searchTerm
     }
 
+    //called onChange by the filer(radio buttons)
     const filterChangeHandler = (event) => {
-        setFilter(event.target.value);
+        setFilter(event.target.value); // stores the selected filter
     }
 
+    //called onSubmit 
     const searchSubmitHandler = (event) => {
         event.preventDefault();
-        // console.log("searchTerm");
-        // console.log(searchTerm);
-        // console.log("filter");
-        console.log("props.books");
-        console.log(props.books);
+
         let f = filters[selectedFilter].toLowerCase();
         let tmpResult = [];
-        props.books.map((el,index)=>{
-            if (props.books[index][f].includes(searchTerm)){
-                tmpResult.push(props.books[index]);
+        //checks which book entries match the searhTerm, if any
+        props.books.map((book)=>{ 
+            if (book[f].includes(searchTerm)){
+                tmpResult.push(book);
             }
-            
         })
-        setSearchResult(tmpResult);
-        
-        //setSearchResult()
+        setSearchResult(tmpResult); // stores the result of the search
     }
-    console.log("mini State:");
-    console.log(searchTerm);
-    console.log("RESULTS!!!!")
-    console.log(searchResult);
+
     return (
-        <form onSubmit={searchSubmitHandler}>
-            <input type="text" placeholder="Search" className="search-bar" onChange={searchChangeHandler}/>
-            <input type="submit" style={{display:"none"}}/>
-            <Row>
-                {filters.map((filter,index)=> {
-                    return (
-                        <Col>
-                            <div>
-                                <input type="radio" value={index} className="btn-filter" checked={selectedFilter==index} onChange={filterChangeHandler}/> {filter}
-                            </div>
-                        </Col>
+        <div>
+            <form onSubmit={searchSubmitHandler}>
+                <input type="text" placeholder="Search..." className="search-bar" onChange={searchChangeHandler}/>
+                <input type="submit" style={{display:"none"}}/>
+                <Row>
+                    {filters.map((filter,index)=> {
+                        return (
+                            <Col>
+                                <div> 
+                                    {/* Only one filter can be active at any time based on the selectedFilter variable */}
+                                    <input type="radio" value={index} className="btn-filter" checked={selectedFilter==index} onChange={filterChangeHandler}/> {filter}
+                                </div>
+                            </Col>
                         );
-                    })
-                }
-            </Row>
-        </form>
+                    })}
+                </Row>  
+            </form>
+            <SearchResult 
+                searchResult={searchResult}
+            />
+        </div>
     );
 }
 
