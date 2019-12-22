@@ -19,7 +19,7 @@ const newBook = (props) => {
                                     Title:
                                 </Form.Label>
                             <Col md="9">
-                                    <Form.Control as="input" type="text" name="title" className="left-value" onChange={props.storeInput}/>
+                                    <Form.Control as="input" type="text" name="title" required="true" className="left-value" onChange={props.storeInput}/>
                             </Col>
                             </Form.Group>
                             <Form.Group as={Row} controlId="formDescription">
@@ -43,7 +43,7 @@ const newBook = (props) => {
                                     Author's Name:
                                 </Form.Label>
                             <Col md="9">
-                                <Form.Control as="input" type="text" name="author" className="left-value" onChange={props.storeInput}/>
+                                <Form.Control as="input" type="text" name="author" required="true" className="left-value" onChange={props.storeInput}/>
                             </Col>
                             </Form.Group>
                             <Form.Group as={Row} controlId="formPublisher">

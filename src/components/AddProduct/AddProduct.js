@@ -1,6 +1,8 @@
 import React from 'react';
 import NewBook from './NewBook/NewBook';
-import {Button, Breadcrumb, Alert} from 'react-bootstrap';
+import {Breadcrumb, Alert} from 'react-bootstrap';
+import {IoIosAdd} from 'react-icons/io';
+import {Button, lightColors, darkColors } from 'react-floating-action-button';
 
 // AddProduct Component returns the page in which the user can add new products
 
@@ -13,7 +15,13 @@ const addProduct = (props) => {
                 <Breadcrumb.Item active>Add Book</Breadcrumb.Item>
             </Breadcrumb>
             <h2>Add new book</h2>
-            <Button type="add" id="btn-add" onClick={props.bookFormCounter}> + </Button>
+            <Button
+                tooltip="Add a new book!"
+                // icon={}
+                // icon="fa fa plus"
+                styles={{backgroundColor: lightColors.white, color: darkColors.lighterRed}}
+                onClick={props.bookFormCounter}><IoIosAdd/></Button>       
+            {/* <Button type="add" id="btn-add" onClick={props.bookFormCounter}> <IoIosAdd/> </Button> */}
             <NewBook
                 // bookFormCount={props.bookFormCount}
                 flag={props.flag}

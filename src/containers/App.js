@@ -16,7 +16,7 @@ class App extends Component {
 
     // state initialization with given data
     this.state = {
-      data,
+      data: localStorage.getItem('storedData')?JSON.parse(localStorage.getItem('storedData')):data,
       formFlag: false,
       alertFlag: false,
       tempBook: {},
@@ -75,7 +75,7 @@ class App extends Component {
     const regUp = /[A-Z]/;
     const regLow = /[a-z]/;
     const regNum = /[0-9]/;
-    const regSymb = /[@"#&*! ]/;
+    const regSymb = /[@"#&*:,!' ]/; //some special characters were added
 
     //Title validation:
     let tmpTitle = this.state.tempBook.title;
@@ -93,16 +93,16 @@ class App extends Component {
     // Description validation:
     let tmpDescription = this.state.tempBook.description;
     //console.log(`DESCR: ${tmpDescription.charAt(0)}`);
-    if (tmpDescription.length !==0 && (!regUp.test(tmpDescription.charAt(0)))) {
+    if (tmpDescription && (!regUp.test(tmpDescription.charAt(0)))) {
       errors.push("The description should start with an uppercase letter.");
     } 
-    if (tmpDescription.length > 512) {
+    if (tmpDescription && (tmpDescription.length > 512)) {
       errors.push("The description should be at most 512 characters long.")
     }
 
     // Categories validation:
     let tmpCat = this.state.tempBook.categories;
-    if (tmpCat.length !== 0 && tmpCat.split(',').length > 4) {
+    if (tmpCat && tmpCat.split(',').length > 4) {
       errors.push("You can assign only up to 4 categories to the book separated by comma.");
     }
 
@@ -114,36 +114,40 @@ class App extends Component {
 
     // Publisher validation:
     let tmpPublisher = this.state.tempBook.publisher;
-    if (tmpPublisher.length < 5 || tmpPublisher > 60) {
+    if (tmpPublisher && (tmpPublisher.length < 5 || tmpPublisher > 60)) {
       errors.push("The publisher sould be at least 5 characters long and at most 60.");
     }
 
     // Year validation:
     let tmpYear = this.state.tempBook.published;
-    tmpYear = tmpYear.toString();
-    if (tmpYear.length !== 4) {
-      errors.push("The year should be 4 digits long.");
-    }
-    for (let i=0; i < tmpYear.length; i++) {
-      let y = tmpYear.charAt(i);
-      console.log(`YEAR: ${y}`);
-      if (!regNum.test(y)) {
-        errors.push("Please enter correct year. Only numbers are acceptable.");
-        break;
+    if (tmpYear) {
+      tmpYear = tmpYear.toString();
+      if (tmpYear.length !== 4) {
+        errors.push("The year should be 4 digits long.");
+      }
+      for (let i=0; i < tmpYear.length; i++) {
+        let y = tmpYear.charAt(i);
+        console.log(`YEAR: ${y}`);
+        if (!regNum.test(y)) {
+          errors.push("Please enter correct year. Only numbers are acceptable.");
+          break;
+        }
       }
     }
 
     // Number of Pages validation:
     let tmpPages = this.state.tempBook.pages;
-    if (tmpPages.length > 4) {
-      errors.push("The number of pages can be up to 9999.");
-    }
-    for (let i=0; i< tmpPages.length; i++) {
-      let p = tmpPages.charAt(i);
-      console.log(`Pages: ${p}`);
-      if (!regNum.test(p)){
-        errors.push("Invalid number of pages.");
-        break;
+    if (tmpPages) {
+      if (tmpPages.length > 4) {
+        errors.push("The number of pages can be up to 9999.");
+      }
+      for (let i=0; i< tmpPages.length; i++) {
+        let p = tmpPages.charAt(i);
+        console.log(`Pages: ${p}`);
+        if (!regNum.test(p)){
+          errors.push("Invalid number of pages.");
+          break;
+        }
       }
     }
 
@@ -185,7 +189,8 @@ class App extends Component {
       console.log("I have found NO errors. Hooray!");
       let data ={...this.state.data};
       data.books = books;
-      this.setState({data: data, alertFlag:false, errors: errors});
+      this.setState({data: data, alertFlag: false, formFlag: false, errors: errors, tempBook: []});
+      localStorage.setItem('storedData', JSON.stringify(data));
     }
   }
 

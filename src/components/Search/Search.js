@@ -11,7 +11,7 @@ const Search = (props) => {
     const [selectedFilter, setFilter] = useState(0);
 
     //search filters. Adding a new value in the array results a new filter in the search
-    const filters = ["Title", "Author", "Category", "Publisher", "Year"];
+    const filters = ["Title", "Author", "Category", "Publisher", "Published"];
 
     //called onChange in the search bar
     const searchChangeHandler = (event) => {
@@ -31,7 +31,7 @@ const Search = (props) => {
         let tmpResult = [];
         //checks which book entries match the searhTerm, if any
         props.books.map((book)=>{ 
-            if (book[f].includes(searchTerm)){
+            if (book[f] && book[f].includes(searchTerm)){
                 tmpResult.push(book);
             }
             return null;
