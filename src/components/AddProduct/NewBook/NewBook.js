@@ -1,7 +1,6 @@
 import React from 'react';
-import {Row, Col, Container} from 'react-bootstrap';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import {Row, Col, Container, Button, Form} from 'react-bootstrap';
+import StarRating from 'react-svg-star-rating';
 
 // NewBook Component returns the form to add a new book
 
@@ -19,7 +18,7 @@ const newBook = (props) => {
                                     Title:
                                 </Form.Label>
                             <Col md="9">
-                                    <Form.Control as="input" type="text" name="title" required="true" className="left-value" onChange={props.storeInput}/>
+                                    <Form.Control as="input" type="text" name="title" required={true} className="left-value" onChange={props.storeInput}/>
                             </Col>
                             </Form.Group>
                             <Form.Group as={Row} controlId="formDescription">
@@ -43,7 +42,7 @@ const newBook = (props) => {
                                     Author's Name:
                                 </Form.Label>
                             <Col md="9">
-                                <Form.Control as="input" type="text" name="author" required="true" className="left-value" onChange={props.storeInput}/>
+                                <Form.Control as="input" type="text" name="author" required={true} className="left-value" onChange={props.storeInput}/>
                             </Col>
                             </Form.Group>
                             <Form.Group as={Row} controlId="formPublisher">
@@ -91,7 +90,11 @@ const newBook = (props) => {
                                     Rating:
                                 </Form.Label>
                                 <Col md="8">
-                                    <Form.Control as="input" type="text" name="rating" onChange={props.storeInput}/>
+                                    {/* <Form.Control as="input" name="rating" onChange={props.storeInput}> */}
+                                    <StarRating size={20} activeColor="#82d1b9" name="rating" hoverColor="#98edd3" handleOnClick={props.ratingHandler}/>
+                                    {/* </Form.Control> */}
+                                    
+                                    {/* <Form.Control as="input" type="text" name="rating" onChange={props.storeInput}/> */}
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row} controlId="formISBN10">

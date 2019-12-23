@@ -1,5 +1,15 @@
-import React from "react";
+import React from 'react';
+import {FiSearch} from 'react-icons/fi';
+import {GiBookshelf} from 'react-icons/gi';
+import Row from'react-bootstrap/row';
 
-const home = () => <h2>Welcome</h2>
+const home = () => {
+    return (
+        <Row>
+            <FiSearch size={90} className="search-icon"/>
+            <GiBookshelf size={90} className="book-icon"/>   
+        </Row>
+    );
+}
 
 export default home;

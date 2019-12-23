@@ -19,7 +19,7 @@ const addProduct = (props) => {
                 tooltip="Add a new book!"
                 // icon={}
                 // icon="fa fa plus"
-                styles={{backgroundColor: lightColors.white, color: darkColors.lighterRed}}
+                styles={{backgroundColor: "#f5f5f5", color: "#00838f", fontSize: "40px"}}
                 onClick={props.bookFormCounter}><IoIosAdd/></Button>       
             {/* <Button type="add" id="btn-add" onClick={props.bookFormCounter}> <IoIosAdd/> </Button> */}
             <NewBook
@@ -29,6 +29,7 @@ const addProduct = (props) => {
                 imageButtonHandler={props.imageButtonHandler}
                 storeInput={props.storeInput}
                 storeInState={props.storeInState}
+                ratingHandler={props.ratingHandler}
             />
             {flag?<Alert  variant="danger">{props.errors.map((err)=><p>{err}</p>)}</Alert>:null}
             

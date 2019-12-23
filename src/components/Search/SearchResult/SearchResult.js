@@ -16,6 +16,8 @@ const searchResult = (props) => {
                     return (
                         <BookPreview 
                             book={book}
+                            clickHandler={props.bookClickedHandler}
+                            flag={props.flag}
                         />
                     );
                 })}

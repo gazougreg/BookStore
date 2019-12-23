@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Row, Col, Breadcrumb} from 'react-bootstrap';
 import SearchResult from './SearchResult/SearchResult';
+//import {Redirect} from 'react-router-dom';
 
 //Search Component returns the Search Page
 
@@ -9,6 +10,7 @@ const Search = (props) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResult, setSearchResult] = useState([]);
     const [selectedFilter, setFilter] = useState(0);
+    const [viewFlag, setViewFlag] = useState(false);
 
     //search filters. Adding a new value in the array results a new filter in the search
     const filters = ["Title", "Author", "Category", "Publisher", "Published"];
@@ -39,6 +41,18 @@ const Search = (props) => {
         setSearchResult(tmpResult); // stores the result of the search
     }
 
+    const bookClickedHandler = (book) => {
+        console.log("HANDLER");
+        console.log(book);
+        setViewFlag(true);
+        // return  <Redirect to={{
+        //     pathname: "/view", 
+        //     state: {bookView: book}
+        // }}
+        // />
+        // return <h1>ska</h1>;
+    }
+
     return (
         <div>
             <Breadcrumb>
@@ -63,6 +77,8 @@ const Search = (props) => {
             </form>
             <SearchResult 
                 searchResult={searchResult}
+                bookClickedHandler={bookClickedHandler}
+                flag={viewFlag}
             />
         </div>
     );

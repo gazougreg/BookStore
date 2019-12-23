@@ -4,6 +4,7 @@ import data from '../assets/books.json';
 import Home from '../components/Home/Home';
 import AddProduct from '../components/AddProduct/AddProduct';
 import Search from '../components/Search/Search';
+import ProductView from '../components/ProductView/ProductView';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -21,7 +22,21 @@ class App extends Component {
       alertFlag: false,
       tempBook: {},
       // validations: {},
-      errors: []
+      errors: [],
+      tempView: {
+        title: "What an Adventure!",
+        description: "A momonet in time.",
+        categories: "Crime, Fiction, Humor",
+        author: "James McGeese, Maria de la Horse, Jess von Pig",
+        publisher: "Beluga publishing",
+        published: "1991",
+        pages: "559",
+        image: ".",
+        rating: "3",
+        isbn10: "0123456789",
+        isbn: "1234567890123"
+      },
+      // viewFlag: false
     };
     
   }
@@ -42,6 +57,9 @@ class App extends Component {
   //is called onChange in the form of the NewBook comp
   //it stores the input in state
   changeHandler = (event) => {
+    console.log("EVENT");
+    console.log(event.target.name);
+    console.log(event.target.value);
     let name = event.target.name;
     let value = event.target.value;
     let temp = this.state.tempBook;
@@ -51,6 +69,12 @@ class App extends Component {
 
     this.setState({tempBook : temp});
     //, validations : tempVal
+  }
+
+  ratingHandler = (rating) => {
+    let book = this.state.tempBook;
+    book.rating = rating;
+    this.setState({tempBook: book});
   }
 
 
@@ -193,8 +217,6 @@ class App extends Component {
       localStorage.setItem('storedData', JSON.stringify(data));
     }
   }
-
-
   
 
   render () {
@@ -215,9 +237,12 @@ class App extends Component {
           storeInput={this.changeHandler}
           storeInState={this.submitHandler}
           errors={this.state.errors}
+          ratingHandler={this.ratingHandler}
         /> }/>
           <Route path="/search" render={()=> <Search  books={this.state.data.books}/>}/>
-        </Switch>
+          <Route path="/view" component={ProductView}/>
+          {/* <Route path="/view" render={()=><ProductView book={this.state.tempView}/>}/>*/}
+        </Switch> 
 
         {/* <AddProduct 
           inputImage={this.inputImage}
