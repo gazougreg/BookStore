@@ -13,6 +13,8 @@ const addProduct = (props) => {
                 <Breadcrumb.Item active>Add Book</Breadcrumb.Item>
             </Breadcrumb>
             <h3>Add new book</h3>
+            {/* An alert displayed if errors occured after form validation */}
+            {props.alertFlag?<Alert  variant="danger">{props.errors.map((err)=><p>{err}</p>)}</Alert>:null}
             <Button
                 tooltip="Add a new book!"
                 styles={{backgroundColor: "#f5f5f5", color: "#3086b8", fontSize: "40px"}}
@@ -27,8 +29,7 @@ const addProduct = (props) => {
                 storeInState={props.storeInState}
                 ratingHandler={props.ratingHandler}
             />
-            {/* An alert displayed if errors occured after form validation */}
-            {props.alertFlag?<Alert  variant="danger">{props.errors.map((err)=><p>{err}</p>)}</Alert>:null}
+            
             
         </div>
     );

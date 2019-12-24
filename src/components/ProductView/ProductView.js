@@ -105,13 +105,13 @@ const ProductView = (props) => {
         </Container>
         {/* Below is the Carousel. It contains the relevant books, 4 active at a time */}
         <div style={{"padding":"0 60px","maxWidth":800,"margin":"0 auto"}}>
-            {findRelevantBooks()?<h4>Other books you may like:</h4>:null}
+            {findRelevantBooks().length>0?<h4>Other books you may like:</h4>:null}
             <ItemsCarousel
                 infiniteLoop
                 gutter={10}
                 activePosition={'center'}
                 chevronWidth={60}
-                alwaysShowChevrons={true}
+                alwaysShowChevrons={false}
                 numberOfCards={4}
                 outsideChevron={true}
                 activeItemIndex={activeItemIndex}
