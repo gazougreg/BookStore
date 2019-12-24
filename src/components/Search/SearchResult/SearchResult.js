@@ -9,15 +9,15 @@ const searchResult = (props) => {
     // let rows = props.searchResult.length / 4;
     // let finalRow = props.searchResult.length % 4;
     return (
-        <div>
-            <h4>Results</h4>
+        <div className="SearchResult">
+            {/* <h4>Results</h4> */}
             <Row>
-                {props.searchResult.map((book)=>{
+                {props.searchResult.map((book,index)=>{
                     return (
                         <BookPreview 
                             book={book}
-                            clickHandler={props.bookClickedHandler}
-                            flag={props.flag}
+                            index={index}
+                            result={props.searchResult}
                         />
                     );
                 })}

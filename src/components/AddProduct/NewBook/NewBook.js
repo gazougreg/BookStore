@@ -5,7 +5,6 @@ import StarRating from 'react-svg-star-rating';
 // NewBook Component returns the form to add a new book
 
 const newBook = (props) => {
-    // for(let i=0; 1<props.bookFormCount ; i++) 
     console.log (props.flag);
     if (props.flag) {
         return (
@@ -91,7 +90,7 @@ const newBook = (props) => {
                                 </Form.Label>
                                 <Col md="8">
                                     {/* <Form.Control as="input" name="rating" onChange={props.storeInput}> */}
-                                    <StarRating size={20} activeColor="#82d1b9" name="rating" hoverColor="#98edd3" handleOnClick={props.ratingHandler}/>
+                                    <StarRating size={20} activeColor="#33a2fd" name="rating" hoverColor="#4fc0f5" handleOnClick={props.ratingHandler}/>
                                     {/* </Form.Control> */}
                                     
                                     {/* <Form.Control as="input" type="text" name="rating" onChange={props.storeInput}/> */}

@@ -2,20 +2,29 @@
 /**  BASIC SETUP  **/
 /*******************/
 
+body {
+  background-color:#ecf0f3;
+  color: rgb(65, 71, 70);
+}
+
 *{
   margin: 0;
   padding: 0;
 }
 
-/***********/
-/* HEADERS */
-/***********/
+*:focus{
+  outline: none;
+}
+
+
+/*-- HEADERS --*/
 
 h1 {
   text-align: center;
-  color: rgb(22, 22, 22);
-  border: rgb(22, 22, 22) solid 1px;
-  background-color: rgba(133, 192, 197, 0.541);
+  color: rgb(65, 71, 70);
+  border: rgb(65, 71, 70) solid 2px;
+  background-color: #b6cfe2;
+  ;
   padding: 25px;
   margin: 45px;
 }
@@ -24,49 +33,89 @@ h2 {
   text-align: center;
   color: rgb(31, 31, 31);
   margin-top: 35px;
+  margin-bottom: 40px;
 }
 
-/***********/
-/* BUTTONS */
-/***********/
+h5 {
+  margin: 10px;
+}
 
+
+/*-- BREADCRUMBS --*/
+
+.Crumbs {
+  margin:0px 70px;
+}
+
+
+/*-- LINKS --*/
+
+a:hover,
+a:active,
+a:link,
+a:visited {
+  text-decoration: none;
+  color: rgb(114, 114, 114);
+}
+
+
+/*-- BUTTONS --*/
 #btn-imgUpload {
   margin-bottom: 45px;
-  margin-left: 180px;
-  background-color: rgb(223, 223, 223);
-  border: rgb(223, 223, 223) solid 1px;
-  color: grey;
+  margin-left: 150px;
+  width: auto;
+  background-color: rgb(226, 225, 225);
+  border: rgb(200, 198, 198) double 5px;
+  color: rgb(146, 146, 146);
   text-decoration: none; 
 }
-
-/* .btn-imgUpload:link,
-.btn-imgUpload:visited {
-  
-} */
 
 #btn-imgUpload:hover,
 #btn-imgUpload:active {
   background-color: rgb(184, 184, 184);
-  border: rgb(184, 184, 184) solid 1px;
+  border: rgb(184, 184, 184) double 5 px;
   color: grey;
 }
 
 #btn-save {
-  background-color: rgb(231, 231, 231);
-  border: rgb(41, 41, 41) solid 1px;
-  color: rgb(41, 41, 41);
-  margin: 75px;
+  background-color:#ecf0f3;
+  border: rgb(65, 71, 70) solid 1px;
+  color: rgb(65, 71, 70);
+  margin: 75px 110px;
   padding: 4px 70px;
 }
 
-#btn-add {
-  border-radius: 50%;
-  border: black solid 2px;
-  background-color: rgb(255, 255, 255);
-  font-size: 30px;
-  color: black;
-  float: right;
-  margin: 10px;
+#btn-filter {
+  margin: 5px;
+}
+
+#fav-btn,
+#share-btn {
+  margin: 10px 20px;
+}
+
+#buy-btn {
+  margin: 10px 40px;
+  padding: 5px 60px;
+}
+
+
+/***************/
+/** HOME PAGE **/
+/***************/
+
+.Home {
+  text-align: center;
+}
+
+.search-icon,
+.book-icon {
+  margin:60px;
+}
+
+.Home a:link,
+.Home a:visited {
+  color: rgb(88, 98, 97);
 }
 
 
@@ -75,7 +124,74 @@ h2 {
 /**********************/
 
 .book-form {
-  border: black solid 1px;
-  margin: 40px;
+  border: rgb(65, 71, 70) solid 1px;
+  width:90%;
   padding: 50px 20px;
+}
+
+
+/**********************/
+/** SEARCH PAGE **/
+/**********************/
+
+.SearchContainer {
+  text-align: center;
+}
+
+.SearchBar {
+  width:90%;
+  height: 50px;
+  text-align: center;
+  margin-bottom: 20px;
+  border-radius: 7px;
+  border: rgb(114, 126, 124) solid 2px;
+}
+
+.FiltersBar {
+  width: 100%;
+}
+
+.Filters {
+  padding: 2px;
+  margin:0px;
+}
+
+/** SEARCH RESULTS **/
+
+.SearchResult {
+  text-align: center;
+  margin:80px 40px;
+}
+
+.SearchImg {
+  height:50%;
+  width:60%;
+  color:#33a2fd;
+}
+
+
+/***********************/
+/** PRODUCT VIEW PAGE **/
+/***********************/
+
+.ProductView p {
+  margin: 0;
+}
+
+.Col-left {
+  margin-top: 40px;
+  padding-left: 30px;
+}
+
+.BookIntro {
+  margin: 20px;
+}
+
+.BookDits,
+.IsbnNum {
+  margin: 20px;
+}
+
+#pub-par {
+  margin: 0 20px;
 }

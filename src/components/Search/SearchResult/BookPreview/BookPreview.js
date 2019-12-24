@@ -1,18 +1,24 @@
 import React from 'react';
 import {Col,Image}  from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
-
+import {Link} from 'react-router-dom';
+import defaultImage from '../../../../assets/books.jpg'
+import StarRating from 'react-svg-star-rating';
 //BookPreview Component returns the book preview for each book that matches the search 
 
 const bookPreview = (props) => {
     console.log("BookPreview");
     console.log(props);
     return (
-        <Col>
-            {props.book.image?<Image src={props.book.image} rounded/>:null}
-            <a href="" onClick={props.clickHandler}><h5>{props.book.title}</h5></a>
-            <p>{props.book.author}</p>
-            {props.flag?<Redirect to={{pathname:"/view",state:{book: props.book}}}/>:null}
+        <Col md="3">
+            {props.book.image?<Image className="SearchImg" src={props.book.image} rounded/>:<Image className="SearchImg" src={defaultImage}rounded/>}
+            <Link 
+            to={{
+                pathname:"/view", 
+                state: {book: props.book}
+                }}>
+                <h5>{props.book.title}</h5>
+            </Link>
+            {props.book.rating?<p><StarRating size={18} activeColor="#33a2fd" isReadOnly={true} initialRating={props.book.rating}/></p>:<h6>{props.book.author}</h6>}
         </Col>
         
     );

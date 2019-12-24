@@ -23,19 +23,19 @@ class App extends Component {
       tempBook: {},
       // validations: {},
       errors: [],
-      tempView: {
-        title: "What an Adventure!",
-        description: "A momonet in time.",
-        categories: "Crime, Fiction, Humor",
-        author: "James McGeese, Maria de la Horse, Jess von Pig",
-        publisher: "Beluga publishing",
-        published: "1991",
-        pages: "559",
-        image: ".",
-        rating: "3",
-        isbn10: "0123456789",
-        isbn: "1234567890123"
-      },
+      // tempView: {
+      //   title: "What an Adventure!",
+      //   description: "A momonet in time.",
+      //   categories: "Crime, Fiction, Humor",
+      //   author: "James McGeese, Maria de la Horse, Jess von Pig",
+      //   publisher: "Beluga publishing",
+      //   published: "1991",
+      //   pages: "559",
+      //   image: ".",
+      //   rating: "3",
+      //   isbn10: "0123456789",
+      //   isbn: "1234567890123"
+      // },
       // viewFlag: false
     };
     
@@ -46,7 +46,7 @@ class App extends Component {
     this.inputImage.current.click();
   }
 
-  bookFormCounter = () => {
+  bookFormViewer = () => {
     this.setState({formFlag: true});
     // let counter =this.bookFormCount;
     // counter++;
@@ -223,7 +223,7 @@ class App extends Component {
     console.log('State:');
     console.log(this.state);
     return (
-      <div>
+      <div className="Store">
         <h1>Bookstore</h1>
 
         <Switch>
@@ -233,7 +233,7 @@ class App extends Component {
           imageButtonHandler={this.imageButtonHandler}
           alertFlag={this.state.alertFlag}
           flag={this.state.formFlag}
-          bookFormCounter={this.bookFormCounter}
+          bookFormViewer={this.bookFormViewer}
           storeInput={this.changeHandler}
           storeInState={this.submitHandler}
           errors={this.state.errors}
@@ -244,20 +244,7 @@ class App extends Component {
           {/* <Route path="/view" render={()=><ProductView book={this.state.tempView}/>}/>*/}
         </Switch> 
 
-        {/* <AddProduct 
-          inputImage={this.inputImage}
-          imageButtonHandler={this.imageButtonHandler}
-          // bookFormCount={this.state.bookFormCount}
-          alertFlag={this.state.alertFlag}
-          flag={this.state.formFlag}
-          bookFormCounter={this.bookFormCounter}
-          storeInput={this.changeHandler}
-          storeInState={this.submitHandler}
-          errors={this.state.errors}
-        />
-        <Search
-          books={this.state.data.books}
-        /> */}
+        {/* <h1 className="bottom-banner"> </h1> */}
       </div>
     );
   }

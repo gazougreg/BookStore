@@ -15,7 +15,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "react-svg-star-rating": "^1.0.3",
-    "react-test-renderer": "^16.12.0"
+    "react-test-renderer": "^16.12.0",
+    "react-tooltip": "^3.11.1"
   },
   "scripts": {
     "start": "react-scripts start",
