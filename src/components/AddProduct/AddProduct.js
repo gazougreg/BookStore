@@ -2,14 +2,13 @@ import React from 'react';
 import NewBook from './NewBook/NewBook';
 import {Breadcrumb, Alert} from 'react-bootstrap';
 import {IoIosAdd} from 'react-icons/io';
-import {Button, lightColors, darkColors } from 'react-floating-action-button';
+import {Button} from 'react-floating-action-button';
 
-// AddProduct Component returns the page in which the user can add new products
-
+// AddProduct Component returns the page in which the user can add a new book.
 const addProduct = (props) => {
     const flag=props.alertFlag;
     return (
-        <div className="AddProduct">
+        <div>
             <Breadcrumb className="Crumbs">
                 <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
                 <Breadcrumb.Item active>Add Book</Breadcrumb.Item>
@@ -22,7 +21,6 @@ const addProduct = (props) => {
                     <IoIosAdd/>
             </Button>  
             <NewBook
-                // bookFormCount={props.bookFormCount}
                 flag={props.flag}
                 inputImage={props.inputImage}
                 imageButtonHandler={props.imageButtonHandler}
@@ -30,6 +28,7 @@ const addProduct = (props) => {
                 storeInState={props.storeInState}
                 ratingHandler={props.ratingHandler}
             />
+            {/* An alert displayed if errors occured after form validation */}
             {flag?<Alert  variant="danger">{props.errors.map((err)=><p>{err}</p>)}</Alert>:null}
             
         </div>

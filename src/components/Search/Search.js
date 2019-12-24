@@ -1,31 +1,34 @@
 import React, {useState} from 'react';
 import {Row, Col, Breadcrumb, Container} from 'react-bootstrap';
 import SearchResult from './SearchResult/SearchResult';
-import {Redirect} from 'react-router-dom';
 
 //Search Component returns the Search Page
 
-//with hooks, the search and its result are kept 
+//I used Hooks here, to store the search related data (eg searchTerm and searchResult). 
+//These attributes are only used in the scope of a Search attempt 
+//and thus they are not needed in the App state.
 const Search = (props) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResult, setSearchResult] = useState([]);
     const [selectedFilter, setFilter] = useState(0);
-    // const [viewFlag, setViewFlag] = useState(false);
 
-    //search filters. Adding a new value in the array results a new filter in the search
+    //Search filters. Adding a new value in the array results in a new filter in the search.
+    //The name of each filter should match the keys of the book objects.
     const filters = ["Title", "Author", "Categories", "Publisher", "Published"];
 
-    //called onChange in the search bar
+    //It is called onChange in the search bar and stores the string input in the searchTerm.
     const searchChangeHandler = (event) => {
-        setSearchTerm(event.target.value);//stores the string input in the searchTerm
+        setSearchTerm(event.target.value);
     }
 
-    //called onChange by the filer(radio buttons)
+    //It is called onChange by the filer(radio buttons) and stores the selected filter.
     const filterChangeHandler = (event) => {
-        setFilter(event.target.value); // stores the selected filter
+        setFilter(event.target.value); 
     }
 
-    //called onSubmit 
+    //It is called onSubmit of the Search Form. 
+    //It attempts to find the search term in the filtered attribute of the book array.
+    //For a better search, search term and book data are both converted to lower case.
     const searchSubmitHandler = (event) => {
         event.preventDefault();
 
@@ -41,20 +44,6 @@ const Search = (props) => {
         setSearchResult(tmpResult); // stores the result of the search
     }
 
-    // const bookClickedHandler = (book) => {
-    //     //event.preventDefault();
-
-    //     console.log("HANDLER");
-    //     console.log(book);
-    //     setViewFlag(true);
-    //     return  <Redirect to={{
-    //         pathname: "/view", 
-    //         state: {bookView: book}
-    //     }}
-    //     />
-    //     // return <h1>ska</h1>;
-    // }
-
     return (
         <div>
             <Breadcrumb className="Crumbs">
@@ -69,10 +58,16 @@ const Search = (props) => {
                     <Row className="FiltersBar">
                         {filters.map((filter,index)=> {
                             return (
-                                <Col className="Filters">
-                                    <div> 
+                                <Col className="Filters" key={index}>
+                                    <div key={index}> 
                                         {/* Only one filter can be active at any time based on the selectedFilter variable */}
-                                        <input type="radio" value={index} id="btn-filter" checked={selectedFilter==index} onChange={filterChangeHandler}/> {filter}
+                                        <input key={index}
+                                        type="radio" 
+                                        value={index} 
+                                        className="btn-filter" 
+                                        checked={parseInt(selectedFilter)===parseInt(index)} 
+                                        onChange={filterChangeHandler} 
+                                        /> {filter}
                                     </div>
                                 </Col>
                             );

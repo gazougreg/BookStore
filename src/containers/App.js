@@ -12,65 +12,47 @@ class App extends Component {
   constructor (props) {
     super (props);
 
-    //reference for hidden image upload button
+    //Reference for hidden image upload button.
     this.inputImage = React.createRef();
 
-    // state initialization with given data
+    //State initialization with given data.
+    //I get the book array from localStorage (first I check if it exists,else I load the given data).
+    //The localStorage ensures the preservation of the books added to the system, 
+    //which normally would be achieved by backend systems.
     this.state = {
       data: localStorage.getItem('storedData')?JSON.parse(localStorage.getItem('storedData')):data,
       formFlag: false,
       alertFlag: false,
       tempBook: {},
-      // validations: {},
-      errors: [],
-      // tempView: {
-      //   title: "What an Adventure!",
-      //   description: "A momonet in time.",
-      //   categories: "Crime, Fiction, Humor",
-      //   author: "James McGeese, Maria de la Horse, Jess von Pig",
-      //   publisher: "Beluga publishing",
-      //   published: "1991",
-      //   pages: "559",
-      //   image: ".",
-      //   rating: "3",
-      //   isbn10: "0123456789",
-      //   isbn: "1234567890123"
-      // },
-      // viewFlag: false
+      errors: []
     };
     
   }
 
-  //is called onClick in the "NewBook" Comp. & "clicks" the hidden image file input
+  //It is called onClick in the "NewBook" Comp. & "clicks" the hidden image file input
   imageButtonHandler = () => {
     this.inputImage.current.click();
   }
 
+  //It is called onClick in "AddProduct" by the "add" button. 
+  //When clicked, the flag is set so that the form will be displayed.
   bookFormViewer = () => {
     this.setState({formFlag: true});
-    // let counter =this.bookFormCount;
-    // counter++;
-    // this.setState({bookFormCount:counter})
-    // console.log(this.state.bookFormCount);
   }
 
-  //is called onChange in the form of the NewBook comp
-  //it stores the input in state
+  //It is called onChange in the form of the NewBook component.
+  //This function is used for every input of the form (except the "start rating" 
+  //and stores the input in state.
+  //A temp book is created and waits the form submission.
   changeHandler = (event) => {
-    console.log("EVENT");
-    console.log(event.target.name);
-    console.log(event.target.value);
     let name = event.target.name;
     let value = event.target.value;
     let temp = this.state.tempBook;
-    // let tempVal = this.state.validations;
     temp[name] = value ;
-    // tempVal [name] = false;
-
     this.setState({tempBook : temp});
-    //, validations : tempVal
   }
 
+  //It stores the rating input as number in the temp book in state.
   ratingHandler = (rating) => {
     let book = this.state.tempBook;
     book.rating = rating;
@@ -79,17 +61,13 @@ class App extends Component {
 
 
 
-  //is called onSubmit in the form of the NewBook comp
-  //stores the new book in state
+  //It is called onSubmit in the form of the NewBook component.
+  //The necessary validations happen here before submission.
+  //The validated book is stored in the book array in state and in localStorage.
+  //In case of wrong input, a relevant error message will appear. 
   submitHandler = (event) => {
     event.preventDefault();
 
-    // Object.values(this.state.validations).map((el)=> {
-    //   if (!el) {
-    //     this.setState({alertFlag: true});
-    //     return null;
-    //   } 
-    // })
     let books = [...this.state.data.books];
     books.push(this.state.tempBook);
     
@@ -99,7 +77,7 @@ class App extends Component {
     const regUp = /[A-Z]/;
     const regLow = /[a-z]/;
     const regNum = /[0-9]/;
-    const regSymb = /[@"#&*:,!' ]/; //some special characters were added
+    const regSymb = /[@"#&*:,!' ]/; //some special characters were added to accomodate a range of titles
 
     //Title validation:
     let tmpTitle = this.state.tempBook.title;
@@ -108,7 +86,6 @@ class App extends Component {
     }
     for (let i=0; i < tmpTitle.length; i++) {
       let t = tmpTitle.charAt(i);
-      //console.log(`TITLE: ${t}`);
       if (!(regUp.test(t) || regLow.test(t) || regNum.test(t) || regSymb.test(t))) {
         errors.push(`Invalid character ${t} in the Title.`);
       }
@@ -116,7 +93,6 @@ class App extends Component {
 
     // Description validation:
     let tmpDescription = this.state.tempBook.description;
-    //console.log(`DESCR: ${tmpDescription.charAt(0)}`);
     if (tmpDescription && (!regUp.test(tmpDescription.charAt(0)))) {
       errors.push("The description should start with an uppercase letter.");
     } 
@@ -151,7 +127,6 @@ class App extends Component {
       }
       for (let i=0; i < tmpYear.length; i++) {
         let y = tmpYear.charAt(i);
-        console.log(`YEAR: ${y}`);
         if (!regNum.test(y)) {
           errors.push("Please enter correct year. Only numbers are acceptable.");
           break;
@@ -206,6 +181,9 @@ class App extends Component {
     }
 
 
+    //If there are any errors, the alert flag is set on true
+    //and the array with the error messages is stored in state.
+    //The flag and the errors are used in the AssProduct to display relevant messages to the user.
     if (errors.length > 0) {
       this.setState({alertFlag:true, errors: errors});
     }
@@ -213,19 +191,20 @@ class App extends Component {
       console.log("I have found NO errors. Hooray!");
       let data ={...this.state.data};
       data.books = books;
+      //If there are NO errors, the new book is stored in state and the flags are reset.
       this.setState({data: data, alertFlag: false, formFlag: false, errors: errors, tempBook: []});
+      //All the books are stored in local storage.
       localStorage.setItem('storedData', JSON.stringify(data));
     }
   }
   
 
+  //There are 4 routes, 3 for the requested pages and one for the Home page (the default).
+  //The home page was added to make the user experience better.
   render () {
-    console.log('State:');
-    console.log(this.state);
     return (
-      <div className="Store">
+      <div>
         <h1>Bookstore</h1>
-
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route path="/book/add" render={()=> <AddProduct 
@@ -241,10 +220,7 @@ class App extends Component {
         /> }/>
           <Route path="/search" render={()=> <Search  books={this.state.data.books}/>}/>
           <Route path="/view" component={ProductView}/>
-          {/* <Route path="/view" render={()=><ProductView book={this.state.tempView}/>}/>*/}
         </Switch> 
-
-        {/* <h1 className="bottom-banner"> </h1> */}
       </div>
     );
   }

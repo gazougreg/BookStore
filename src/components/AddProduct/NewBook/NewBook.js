@@ -5,7 +5,7 @@ import StarRating from 'react-svg-star-rating';
 // NewBook Component returns the form to add a new book
 
 const newBook = (props) => {
-    console.log (props.flag);
+    //if the "add" button is clicked the form is displayed.
     if (props.flag) {
         return (
             <Form onSubmit={props.storeInState}>
@@ -13,59 +13,59 @@ const newBook = (props) => {
                     <Row>
                         <Col md="8">
                             <Form.Group as={Row} controlId="formTitle">
-                                <Form.Label column md="3" className="left-label">
+                                <Form.Label column md="3">
                                     Title:
                                 </Form.Label>
                             <Col md="9">
-                                    <Form.Control as="input" type="text" name="title" required={true} className="left-value" onChange={props.storeInput}/>
+                                    <Form.Control as="input" type="text" name="title" required={true} onChange={props.storeInput}/>
                             </Col>
                             </Form.Group>
                             <Form.Group as={Row} controlId="formDescription">
-                                <Form.Label column md="3" className="left-label">
+                                <Form.Label column md="3" >
                                     Description:
                                 </Form.Label>
                             <Col md="9">
-                                <Form.Control as="input" type="text" name="description" className="left-value" onChange={props.storeInput}/>
+                                <Form.Control as="input" type="text" name="description" onChange={props.storeInput}/>
                             </Col>
                             </Form.Group>
                             <Form.Group as={Row} controlId="formCateg">
-                                <Form.Label column md="3" className="left-label">
+                                <Form.Label column md="3">
                                     Categories:
                                 </Form.Label>
                             <Col md="9">
-                                <Form.Control as="input" type="text" name="categories" className="left-value" onChange={props.storeInput}/>
+                                <Form.Control as="input" type="text" name="categories" onChange={props.storeInput}/>
                             </Col>
                             </Form.Group>
                             <Form.Group as={Row} controlId="formAuthor">
-                                <Form.Label column md="3" className="left-label">
+                                <Form.Label column md="3">
                                     Author's Name:
                                 </Form.Label>
                             <Col md="9">
-                                <Form.Control as="input" type="text" name="author" required={true} className="left-value" onChange={props.storeInput}/>
+                                <Form.Control as="input" type="text" name="author" required={true} onChange={props.storeInput}/>
                             </Col>
                             </Form.Group>
                             <Form.Group as={Row} controlId="formPublisher">
-                                <Form.Label column md="3" className="left-label">
+                                <Form.Label column md="3">
                                     Publisher:
                                 </Form.Label>
                             <Col md="9">
-                                <Form.Control as="input" type="text" name="publisher" className="left-value" onChange={props.storeInput}/>
+                                <Form.Control as="input" type="text" name="publisher" onChange={props.storeInput}/>
                             </Col>
                             </Form.Group>
                             <Form.Group as={Row} controlId="formYear">
-                                <Form.Label column md="3" className="left-label">
+                                <Form.Label column md="3">
                                     Year:
                                 </Form.Label>
                             <Col md="9">
-                                <Form.Control as="input" type="text" name="published" className="left-value" onChange={props.storeInput}/>
+                                <Form.Control as="input" type="text" name="published" onChange={props.storeInput}/>
                             </Col>
                             </Form.Group>
                             <Form.Group as={Row} controlId="formPages">
-                                <Form.Label column md="3" className="left-label">
+                                <Form.Label column md="3">
                                     Number of pages:
                                 </Form.Label>
                             <Col md="9">
-                                <Form.Control as="input" type="text" name="pages" className="left-value" onChange={props.storeInput}/>
+                                <Form.Control as="input" type="text" name="pages" onChange={props.storeInput}/>
                             </Col>
                             </Form.Group>
                         </Col>
@@ -89,11 +89,7 @@ const newBook = (props) => {
                                     Rating:
                                 </Form.Label>
                                 <Col md="8">
-                                    {/* <Form.Control as="input" name="rating" onChange={props.storeInput}> */}
                                     <StarRating size={20} activeColor="#33a2fd" name="rating" hoverColor="#4fc0f5" handleOnClick={props.ratingHandler}/>
-                                    {/* </Form.Control> */}
-                                    
-                                    {/* <Form.Control as="input" type="text" name="rating" onChange={props.storeInput}/> */}
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row} controlId="formISBN10">

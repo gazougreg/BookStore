@@ -1,13 +1,12 @@
 import React from 'react';
 import {Breadcrumb, Container, Col, Row, Figure, Button} from 'react-bootstrap';
 import defaultImage from '../../assets/books.jpg';
-//import omensBook from '../../assets/omens.jpg';
 import {MdPermIdentity} from 'react-icons/md';
 import StarRating from 'react-svg-star-rating';
 
+//When a book from the search results is clicked, 
+//its details are displayed through the ProductView component.
 const productView = (props) => {
-    console.log("ProductView");
-    console.log(props);
     let book = props.location.state.book;
  return (
      <div className="ProductView">
@@ -35,7 +34,7 @@ const productView = (props) => {
                         <StarRating activeColor="#33a2fd" isReadOnly={true} initialRating={book.rating}/>
                     </Row>
                 </Col>
-                <Col md="7" className="Col-right">
+                <Col md="7">
                     <div className="BookIntro">
                         <Row>
                             <h3>{book.title}</h3>

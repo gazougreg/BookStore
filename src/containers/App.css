@@ -85,7 +85,7 @@ a:visited {
   padding: 4px 70px;
 }
 
-#btn-filter {
+.btn-filter {
   margin: 5px;
 }
 
@@ -113,16 +113,13 @@ a:visited {
   margin:60px;
 }
 
-.Home a:link,
-.Home a:visited {
-  color: rgb(88, 98, 97);
-}
 
 
 /**********************/
-/** NEW PRODUCT PAGE **/
+/** ADD PRODUCT PAGE **/
 /**********************/
 
+/**New book**/
 .book-form {
   border: rgb(65, 71, 70) solid 1px;
   width:90%;
