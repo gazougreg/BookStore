@@ -29,11 +29,20 @@ h1 {
   margin: 45px;
 }
 
-h2 {
+h2, h3 {
   text-align: center;
   color: rgb(31, 31, 31);
   margin-top: 35px;
   margin-bottom: 40px;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+h4 {
+  margin-top:60px;
+  margin-bottom: 20px;
 }
 
 h5 {
@@ -98,6 +107,16 @@ a:visited {
   margin: 10px 40px;
   padding: 5px 60px;
 }
+
+.arrow-btn {
+  padding: 0;
+  border: none;
+  background: none;
+}
+.arrow-btn:focus {
+  outline:0;
+}
+
 
 
 /***************/

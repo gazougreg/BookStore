@@ -77,6 +77,7 @@ const Search = (props) => {
             </Container>
             <SearchResult 
                 searchResult={searchResult}
+                books = {props.books}
             />
         </div>
     );

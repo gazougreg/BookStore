@@ -6,14 +6,13 @@ import {Button} from 'react-floating-action-button';
 
 // AddProduct Component returns the page in which the user can add a new book.
 const addProduct = (props) => {
-    const flag=props.alertFlag;
     return (
         <div>
             <Breadcrumb className="Crumbs">
                 <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
                 <Breadcrumb.Item active>Add Book</Breadcrumb.Item>
             </Breadcrumb>
-            <h2>Add new book</h2>
+            <h3>Add new book</h3>
             <Button
                 tooltip="Add a new book!"
                 styles={{backgroundColor: "#f5f5f5", color: "#3086b8", fontSize: "40px"}}
@@ -29,7 +28,7 @@ const addProduct = (props) => {
                 ratingHandler={props.ratingHandler}
             />
             {/* An alert displayed if errors occured after form validation */}
-            {flag?<Alert  variant="danger">{props.errors.map((err)=><p>{err}</p>)}</Alert>:null}
+            {props.alertFlag?<Alert  variant="danger">{props.errors.map((err)=><p>{err}</p>)}</Alert>:null}
             
         </div>
     );

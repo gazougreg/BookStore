@@ -142,7 +142,6 @@ class App extends Component {
       }
       for (let i=0; i< tmpPages.length; i++) {
         let p = tmpPages.charAt(i);
-        console.log(`Pages: ${p}`);
         if (!regNum.test(p)){
           errors.push("Invalid number of pages.");
           break;
@@ -192,7 +191,7 @@ class App extends Component {
       let data ={...this.state.data};
       data.books = books;
       //If there are NO errors, the new book is stored in state and the flags are reset.
-      this.setState({data: data, alertFlag: false, formFlag: false, errors: errors, tempBook: []});
+      this.setState({data: data, alertFlag: false, formFlag: false, errors: errors, tempBook: {}});
       //All the books are stored in local storage.
       localStorage.setItem('storedData', JSON.stringify(data));
     }

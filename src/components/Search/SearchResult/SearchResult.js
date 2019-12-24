@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row} from 'react-bootstrap';
+import {Row, Col} from 'react-bootstrap';
 import BookPreview from './BookPreview/BookPreview';
 
 // SearchResult Component returns the result of the search, if any.
@@ -9,11 +9,14 @@ const searchResult = (props) => {
     return (
         <div className="SearchResult">
             <Row>
-                {props.searchResult.map((book)=>{
+                {props.searchResult.map((book,index)=>{
                     return (
-                        <BookPreview 
-                            book={book}
-                        />
+                        <Col md="3" key={index}>
+                            <BookPreview key={index}
+                                book={book}
+                                books = {props.books}
+                            />
+                        </Col>
                     );
                 })}
             </Row>
