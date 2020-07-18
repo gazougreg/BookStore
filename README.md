@@ -3,6 +3,15 @@ Online bookstore with product view, product entry & product search page, in Reac
 In the home page, the user can choose between searching a book or adding a new one. Then by clicking on the corresponding
 icon, the user is directed to the Search or Add a new book page.
 
+## Goals
+    * clean code
+    * state management 
+    * component structural changes
+    * DRY-er code
+    * performance improvment
+    * fix vulnerabilities
+
+
 ## instructions:
  
  1. install Node.js
