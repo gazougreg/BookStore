@@ -14,7 +14,7 @@
     "react-icons": "^3.8.0",
     "react-items-carousel": "^2.8.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.0",
+    "react-scripts": "5.0.1",
     "react-svg-star-rating": "^1.0.3",
     "react-test-renderer": "^16.12.0",
     "react-tooltip": "^3.11.1"
